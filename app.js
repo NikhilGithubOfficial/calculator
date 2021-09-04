@@ -3,8 +3,8 @@ let secondOperand = ''
 let currentOperation = null
 let shouldResetScreen = false
 
-const numberButtons = document.querySelectorAll('[data-number]')
-const operatorButtons = document.querySelectorAll('[data-operator]')
+const numberButtons = document.querySelectorAll('#data-number')
+const operatorButtons = document.querySelectorAll('#data-operator')
 const equalsButton = document.getElementById('equalsBtn')
 const clearButton = document.getElementById('clearBtn')
 const deleteButton = document.getElementById('deleteBtn')
@@ -128,4 +128,21 @@ function operate(operator , a , b){
 		default:
 			return null
 	}
+}
+
+function handleKeyboardInput(e) {
+	if (e.key >= 0 && e.key <= 9) appendNumber(e.key)
+	if (e.key === '.') appendPoint()
+	if (e.key === '=' || e.key === 'Enter') evaluate()
+	if (e.key === 'Backspace') deleteNumber()
+	if (e.key === 'Escape') clear()
+	if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/')
+	setOperation(convertOperator(e.key))
+}
+
+function convertOperator(keyboardOperator) {
+	if (keyboardOperator === '/') return '÷'
+	if (keyboardOperator === '*') return '×'
+	if (keyboardOperator === '-') return '−'
+	if (keyboardOperator === '+') return '+'
 }
