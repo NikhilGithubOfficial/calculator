@@ -11,31 +11,35 @@ body {
 }
 
 .calculator {
-    border-radius: 10px;
+    border-radius: 20px;
     background-color: #010505;
     box-shadow: 20px 20px 40px #155255;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     width: 300px;
-    min-height: 500px;
+    height: 500px;
 }
 
 .screen {
     text-align: right;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .screen-current {
-    height: 50px;
     font-size: 50px;
-    margin: 10px;
+    margin-right: 15px;
+    margin-top: 0px;
     margin-bottom: 25px;
     color: #F4F4F4;
 }
 
 .screen-last {
     height: 50px;
-    font-size: 10px;
+    font-size: 30px;
+    margin-right: 15px;
+    margin-bottom: 0px;
     color: #59A59D;
 }
 
@@ -64,7 +68,7 @@ body {
     background-color: #0c4043;    ;
 }
 
-#clearbtn {
+#clearBtn {
     border: none;
     color: #F4F4F4;
     background-color: #051818;
@@ -73,7 +77,7 @@ body {
     transition: 0.3s;
 }
 
-#deletebtn {
+#deleteBtn {
     border: none;
     color: #F4F4F4;
     background-color: #051818;
@@ -88,11 +92,29 @@ body {
 
 #pointBtn {
     background-color: #051818;
-    border-radius: 0 0 0 10px;
+    border-radius: 0 0 0 20px;
 }
 
 #equalsBtn {
     background-color: #2ab2a6;
     grid-column: span 2;
-    border-radius: 0 0 10px 0;
+    border-radius: 0 0 20px 0;
 }
+
+@media only screen and (max-width: 600px) {
+
+    .calculator {
+        width: 60%;
+        height: 60%;
+    }
+    .screen-last {
+        font-size: 20px;
+        margin-top: 10px;
+        margin-bottom: 0px;
+    }
+
+    .screen-current {
+        margin-top: 0px;
+        font-size: 40px;
+    }
+  }
