@@ -1,63 +1,22 @@
-let firstOperand = null
-let secondOperand = null
+let firstOperand = ''
+let secondOperand = ''
 let currentOperation = null
-let resetScreen = false
+let shouldResetScreen = false
 
-const numberButtons = document.querySelectorAll('[data-number]');
-const operatorButtons = document.querySelectorAll('[data-Operator');
-const deleteButton = document.getElementById('deletebtn');
-const clearButton = document.getElementById('clearbtn');
-const equalsButton = document.getElementById('equalsbtn');
-const displayScreen = document.getElementById('screen');
+const numberButtons = document.querySelectorAll('[data-number]')
+const operatorButtons = document.querySelectorAll('[data-operator]')
+const equalsButton = document.getElementById('equalsBtn')
+const clearButton = document.getElementById('clearBtn')
+const deleteButton = document.getElementById('deleteBtn')
+const pointButton = document.getElementById('pointBtn')
+const lastOperationScreen = document.getElementById('lastOperationScreen')
+const currentOperationScreen = document.getElementById('currentOperationScreen')
 
-clearButton.addEventListener('click' , clear);
-deleteButton.addEventListener('click' , deleteNum);
-equalsButton.addEventListener('click' , evaluate);
-
-function clear() {
-    displayScreen.textContent('0');
-    secondOperand = '';
-    firstOperand = '';
-    currOperation = null;
-}
-
-function appendNumber(num) {
-    if(displayScreen.textContent === '0' || resetScreen) reset();
-    displayScreen.textContent += num; 
-}
-
-function reset() {
-    displayScreen.textContent = '';
-    resetScreen = false;
-}
-
-function deleteNum() {
-    displayScreen.textContent = displayScreen.textContent.toString().slice(0,-1);
-}
-
-function setOperation(operator) {
-    if (currentOperation !== null) evaluate()
-    firstOperand = displayScreen.textContent
-    currentOperation = operator
-    resetScreen = true
-}
-  
-function evaluate() {
-    if (currentOperation === null || resetScreen) return
-    if (currentOperation === '/' && displayScreen.textContent === '0') {
-        alert("ERROR : Division by 0 not allowed")
-        return
-    }
-    secondOperand = displayScreen.textContent
-    displayScreen.textContent = roundResult(
-        operate(currentOperation, firstOperand, secondOperand)
-    )
-    currentOperation = null
-}
-
-function roundResult(number) {
-    return Math.round(number * 1000) / 1000
-}
+window.addEventListener('keydown', handleKeyboardInput)
+equalsButton.addEventListener('click', evaluate)
+clearButton.addEventListener('click', clear)
+deleteButton.addEventListener('click', deleteNumber)
+pointButton.addEventListener('click', appendPoint)
 
 numberButtons.forEach((button) =>
   button.addEventListener('click', () => appendNumber(button.textContent))
@@ -66,6 +25,69 @@ numberButtons.forEach((button) =>
 operatorButtons.forEach((button) =>
   button.addEventListener('click', () => setOperation(button.textContent))
 )
+
+function appendNumber(number) {
+  if (currentOperationScreen.textContent === '0' || shouldResetScreen)
+    resetScreen()
+  currentOperationScreen.textContent += number
+}
+
+function resetScreen() {
+  currentOperationScreen.textContent = ''
+  shouldResetScreen = false
+}
+
+function clear() {
+  currentOperationScreen.textContent = '0'
+  lastOperationScreen.textContent = ''
+  firstOperand = ''
+  secondOperand = ''
+  currentOperation = null
+}
+
+function appendPoint() {
+  if (shouldResetScreen) resetScreen()
+  if (currentOperationScreen.textContent === '')
+    currentOperationScreen.textContent = '0'
+  if (currentOperationScreen.textContent.includes('.')) return
+  currentOperationScreen.textContent += '.'
+}
+
+function deleteNumber() {
+  currentOperationScreen.textContent = currentOperationScreen.textContent
+    .toString()
+    .slice(0, -1)
+}
+
+function setOperation(operator) {
+  if (currentOperation !== null) evaluate()
+  firstOperand = currentOperationScreen.textContent
+  currentOperation = operator
+  lastOperationScreen.textContent = `${firstOperand} ${currentOperation}`
+  shouldResetScreen = true
+}
+
+function evaluate() {
+  if (currentOperation === null || shouldResetScreen) return
+  if (currentOperation === '÷' && currentOperationScreen.textContent === '0') {
+    alert("You can't divide by 0!")
+    return
+  }
+  if (currentOperation === '%' && currentOperationScreen.textContent === '0') {
+    alert("You can't divide by 0!")
+    return
+  } 
+  secondOperand = currentOperationScreen.textContent
+  currentOperationScreen.textContent = roundResult(
+    operate(currentOperation, firstOperand, secondOperand)
+  )
+  lastOperationScreen.textContent = `${firstOperand} ${currentOperation} ${secondOperand} =`
+  currentOperation = null
+}
+
+function roundResult(number) {
+  return Math.round(number * 1000) / 1000
+}
 
 function add(a , b){
     return a + b;
@@ -83,15 +105,27 @@ function divide(a , b){
     return a / b;
 }
 
+function remainder(a , b){
+	return a % b;
+}
+
 function operate(operator , a , b){
     a = Number(a)
-    b = Number(b)
-    if(operator == "+") return add(a , b);
-    if(operator == "-") return subtract(a , b);
-    if(operator == "*") return multiply(a , b);
-    if(operator == "/") {
-        if(b == 0) return null;
-        else return divide(a , b);
-    }
-    return null;
+	b = Number(b)
+	switch (operator) {
+		case '+':
+			return add(a, b)
+		case '−':
+			return substract(a, b)
+		case '×':
+			return multiply(a, b)
+		case '÷':
+			if (b === 0) return null
+			else return divide(a, b)
+		case '%':
+			if (b === 0) return null
+			else return remainder(a, b)
+		default:
+			return null
+	}
 }
