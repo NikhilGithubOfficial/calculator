@@ -23,8 +23,6 @@ body {
 
 .screen {
     text-align: right;
-    word-wrap: break-word;
-    word-break: break-all;
 }
 
 .screen-current {
