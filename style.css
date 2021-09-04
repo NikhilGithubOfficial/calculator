@@ -87,8 +87,8 @@ body {
     transition: 0.3s;
 }
 
-#deletebtn:hover {opacity: 0.6}
-#clearbtn:hover {opacity: 0.6}
+#deleteBtn:hover {opacity: 0.6}
+#clearBtn:hover {opacity: 0.6}
 
 #pointBtn {
     background-color: #051818;
@@ -101,7 +101,7 @@ body {
     border-radius: 0 0 20px 0;
 }
 
-@media only screen and (max-width: 600px) {
+@media (max-width: 600px) {
 
     .calculator {
         width: 60%;
