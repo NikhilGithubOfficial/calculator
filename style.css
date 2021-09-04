@@ -1,0 +1,100 @@
+body {
+    background-color: #2ab0a2;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.calculator {
+    border-radius: 10px;
+    background-color: #010505;
+    box-shadow: 20px 20px 40px #155255;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 300px;
+    min-height: 500px;
+}
+
+.screen {
+    text-align: right;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.screen-current {
+    height: 50px;
+    font-size: 50px;
+    margin: 10px;
+    margin-bottom: 25px;
+    color: #F4F4F4;
+}
+
+.screen-last {
+    height: 50px;
+    font-size: 10px;
+    color: #59A59D;
+}
+
+.keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-area: span;
+    height: 300px;
+}
+
+.btn {
+    border: none;
+    color: #F4F4F4;
+    font-size: 20px;
+    opacity: 1;
+    transition: 0.3s;
+}
+
+.btn:hover {opacity: 0.6}
+
+#data-number {
+    background-color: #051818;
+}
+
+#data-operator {
+    background-color: #0c4043;    ;
+}
+
+#clearbtn {
+    border: none;
+    color: #F4F4F4;
+    background-color: #051818;
+    font-size: 20px;
+    opacity: 1;
+    transition: 0.3s;
+}
+
+#deletebtn {
+    border: none;
+    color: #F4F4F4;
+    background-color: #051818;
+    font-size: 20px;
+    grid-column: span 2;
+    opacity: 1;
+    transition: 0.3s;
+}
+
+#deletebtn:hover {opacity: 0.6}
+#clearbtn:hover {opacity: 0.6}
+
+#pointBtn {
+    background-color: #051818;
+    border-radius: 0 0 0 10px;
+}
+
+#equalsBtn {
+    background-color: #2ab2a6;
+    grid-column: span 2;
+    border-radius: 0 0 10px 0;
+}
