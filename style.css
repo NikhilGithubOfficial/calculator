@@ -100,21 +100,3 @@ body {
     grid-column: span 2;
     border-radius: 0 0 20px 0;
 }
-
-@media (max-width: 600px) {
-
-    .calculator {
-        width: 60%;
-        height: 60%;
-    }
-    .screen-last {
-        font-size: 20px;
-        margin-top: 10px;
-        margin-bottom: 0px;
-    }
-
-    .screen-current {
-        margin-top: 0px;
-        font-size: 40px;
-    }
-  }
