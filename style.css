@@ -11,7 +11,7 @@ body {
 }
 
 .calculator {
-    border-radius: 20px;
+    border-radius: 10px;
     background-color: #010505;
     box-shadow: 20px 20px 40px #155255;
     display: flex;
@@ -82,7 +82,6 @@ body {
     color: #F4F4F4;
     background-color: #051818;
     font-size: 20px;
-    grid-column: span 2;
     opacity: 1;
     transition: 0.3s;
 }
@@ -92,11 +91,11 @@ body {
 
 #pointBtn {
     background-color: #051818;
-    border-radius: 0 0 0 20px;
+    border-radius: 0 0 0 10px;
 }
 
 #equalsBtn {
     background-color: #2ab2a6;
     grid-column: span 2;
-    border-radius: 0 0 20px 0;
+    border-radius: 0 0 10px 0;
 }
