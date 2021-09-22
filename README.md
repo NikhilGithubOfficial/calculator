@@ -7,13 +7,13 @@
 
 > A simple calculator with all the basic functions, built with javascript , html and css
 
-### 🏠 [Homepage](https://nikhilgithubofficial.github.io/calculator/)
+### 🏠 [Homepage](https://theproficientdev.github.io/calculator/)
 
 ## Author
 
 👤 **Nikhil Kumar**
 
-* Github: [@NikhilGithubOfficial](https://github.com/NikhilGithubOfficial)
+* Github: [@theproficientdev](https://github.com/theproficientdev)
 
 ## Show your support
 
